@@ -16,23 +16,23 @@ function generate(){
 	var dte=d.getDate();
 	var dt=dte+'/'+mon+'/'+d.getFullYear();
 	var http = new XMLHttpRequest();
-    var queryString = "?id = " + a ;
-    queryString +=  "&name= " + customername+ "&id= " + a +"&netamt= " + netamts+"&dte="+dt;
-    http.open("POST", "http://localhost:8080/billing_application/insert_to_db.jsp"+ queryString, true);
-    http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    http.send();
+    	var queryString = "?id = " + a ;
+    	queryString +=  "&name= " + customername+ "&id= " + a +"&netamt= " + netamts+"&dte="+dt;
+    	http.open("POST", "http://localhost:8080/billing_application/insert_to_db.jsp"+ queryString, true);
+    	http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    	http.send();
 	document.getElementById("net").innerHTML =netamts;
-    console.log(netamts);
+    	console.log(netamts);
 	document.getElementById("in").innerHTML = a;
-    console.log(a);
+    	console.log(a);
 	document.getElementById("val").innerHTML =tot;
-    console.log(tot);
+    	console.log(tot);
 	document.getElementById("dis").innerHTML =dis;
-    console.log(dis);
+    	console.log(dis);
 	document.getElementById("t").innerHTML =t;
-    console.log(t);
+    	console.log(t);
 	document.getElementById("cust").innerHTML =customername;
-    console.log(customername);
+    	console.log(customername);
 	document.getElementById("generate").style.visibility = "hidden";
 }
 function totcal()
@@ -41,7 +41,7 @@ function totcal()
 	for(var i = 1; i < table.rows.length; i++)
 	{
 		sumVal = sumVal + parseInt(table.rows[i].cells[3].innerHTML);
-    }
+        }
 	document.getElementById("total").value= sumVal;
 }
 function myinv()
@@ -67,7 +67,7 @@ function checkradio() {
 	  var randomChars ='0123456789';
 	  var result = '';
 	  for ( var i = 0; i < 6; i++ ) {
-        result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+          result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
    }
    document.getElementById("inv").value='INV-'+result;
    document.getElementById("newinv").value='INV'+result;
@@ -85,9 +85,9 @@ function calculation()
 
 function prices()
 {
-		var desc = document.getElementById("desc_sel").value;
-		var price = desc.split(" ");
-	    document.getElementById("Price").value = price[1];
+	var desc = document.getElementById("desc_sel").value;
+	var price = desc.split(" ");
+	document.getElementById("Price").value = price[1];
 }
 function dis()
 {
@@ -96,10 +96,10 @@ function dis()
 function print() {
             var divContents = document.getElementById("heading").innerHTML;
             var a = window.open('', '', 'height=750, width=750');
-			a.document.write('<html>');
+	    a.document.write('<html>');
             a.document.write('<body>');
-			a.document.write(divContents);
-			a.document.write('</body></html>');
+	    a.document.write(divContents);
+	    a.document.write('</body></html>');
             a.document.close();
             a.print();
 }
@@ -110,8 +110,8 @@ function addvalues()
 	var table = document.getElementById("myTable");
 	var desc = document.getElementById("desc_sel").value;
 	var price = desc.split(" ");
-    var q = document.getElementById("Quantity").value;
-    var p = document.getElementById("Price").value;
+        var q = document.getElementById("Quantity").value;
+        var p = document.getElementById("Price").value;
 	if (n==null || n==""||Cus==null||desc==null||desc==""||q==null||q==""||p==""||p==null) {
           alert("Please fill all fields");
           return false;
