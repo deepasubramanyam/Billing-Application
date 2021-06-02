@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="form.css">
+<style>
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 6px 6px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+<div class="sidenav">
+  <a href="http://localhost:8080/invoice/customer_details.html">Add Customer</a>
+  <a href="http://localhost:8080/invoice/create_invoice.jsp">New Invoice</a>
+</div>
+<div><h1 class="hd"><center>New Customer Details</center></h1></div>
+<div class="main">
+<form class="form" onsubmit="return formValidation();" action="http://localhost:8080/invoice/insert_customer.jsp" method="post">
+Customer Id:<input type="text" name="Id" id="inv"><input type="radio" id="Radio" name="id" id="custid" onblur="checkradio()">Autogenerate<br><br>
+Customer Name: <select name="title"id="title">
+  <option value="Mr."> Mr.</option>
+  <option value="Mrs."> Mrs.</option>
+  <option value="Miss."> Miss.</option>
+  <option value="Ms."> Ms.</option>
+  <option value="Dr."> Dr.</option>
+</select><input type="text" name="Name" id="Name"><br><br>
+Customer Phone Number:<input type="text" name="Phn" id="phn"><br><br>
+Customer Email:<input type="text" name="Email" id="Email"><br><br>
+Customer Address:<input type="text" name="Address" id="address"><br><br></center>
+<center><input type="submit" name="submit" class="button" value="submit">
+<input type="reset" class="button" value="Reset"></center>
+</div>
+</form>
+
+<script>
+function formValidation()
+{
+	var name = document.getElementById("Name");
+    var em=document.getElementById("Email");
+	var phone=document.getElementById("phn");
+    var letters=/^[a-zA-Z]*(\s{0,1})+[a-zA-Z]*(\s{0,1})+[a-zA-Z]+$/;
+    var email1=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+	if(name.value==""||em.value==""||document.getElementById("phn")==""||document.getElementById("address")==""){
+		window.alert("All fields are mandatory");
+        return false;
+	}
+    if(!name.value.match(letters))
+    {
+        window.alert("Name must be in alphabets only");
+        document.getElementById("Name").focus();
+       	return false;
+    }
+    if(!em.value.match(email1))
+    {
+		window.alert("Please enter email in valid format!!!");
+        document.getElementById("Email").focus();
+        return false;
+	}
+	if(!phone.value.match(phoneno))
+    {
+		window.alert("Please enter phone number in valid format!!!");
+        document.getElementById("phn").focus();
+        return false;
+	}
+	else
+    {
+        return true;
+	}
+}
+function checkradio() {
+  var x = document.getElementById("Radio");
+  if(x.checked ==true)
+  {
+	  var randomChars ='123456789';
+	  var result = '';
+	  for ( var i = 0; i < 6; i++ ) {
+        result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+   }
+   document.getElementById("inv").value=result;
+  }
+}
+</script>
+</body>
+</html>
